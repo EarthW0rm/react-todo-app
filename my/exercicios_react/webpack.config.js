@@ -1,10 +1,5 @@
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-// var extractPlugin = new ExtractTextPlugin({
-//     filename: 'style.css'
-//     , allChunks: true
-// });
 
 module.exports = {
     entry: './src/webpack.index.jsx'
@@ -34,18 +29,21 @@ module.exports = {
                 ]
             }
             ,{
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.css$/
+                , exclude: /(node_modules|bower_components)/
+                , use: ['style-loader', 'css-loader']
             }
-            // , {
-            //     test: /\.scss$/
-            //     , use: extractPlugin.extract({
-            //         use: ['css-loader', 'sass-loader']
-            //     })
-            // }
             ,{
-                test: /\.html$/,
-                use: [
+                test: /\.scss$/
+                , exclude: /(node_modules|bower_components)/
+                , use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'sass-loader']
+                })
+            }
+            ,{
+                test: /\.html$/
+                , exclude: /(node_modules|bower_components)/
+                , use: [
                   {
                     loader: "html-loader",
                     options: { minimize: true }
@@ -55,8 +53,11 @@ module.exports = {
         ]
     }
     , plugins: [
-        // extractPlugin
-        new HtmlWebPackPlugin({
+        new ExtractTextPlugin({
+            filename: 'style.css'
+            , allChunks: true
+        })
+        , new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
         })
