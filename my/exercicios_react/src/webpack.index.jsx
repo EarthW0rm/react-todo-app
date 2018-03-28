@@ -4,4 +4,4 @@ import ReactDom from 'react-dom';
 import Component from './component';
 
 
-ReactDom.render(<Component />, document.getElementById('app'));
+ReactDom.render(<Component value="Ta Ta Ta Ta Ta" />, document.getElementById('app'));

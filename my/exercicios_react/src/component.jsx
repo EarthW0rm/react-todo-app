@@ -1,5 +1,5 @@
 import React from 'react';
 
-export  default function (){
-    return <h1>Plata o Plomo</h1>;
+export default (props) => {
+    return <h1>Plata o Plomo - {props.value}</h1>;
 }
