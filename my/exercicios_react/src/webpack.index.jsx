@@ -2,7 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
-import Component from './component';
+import {Primeiro, Segundo} from './component';
 
 
-ReactDom.render(<Component value="Ta Ta Ta Ta Ta" />, document.getElementById('app'));
+ReactDom.render(
+    <div>
+        <Primeiro/>
+        <Segundo/>
+    </div>
+    , document.getElementById('app'));
