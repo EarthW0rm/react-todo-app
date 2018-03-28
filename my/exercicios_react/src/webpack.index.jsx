@@ -2,12 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
-import {Primeiro, Segundo} from './component';
+import Griffins from './familyGuy';
 
 
 ReactDom.render(
-    <div>
-        <Primeiro/>
-        <Segundo/>
+    <div class="container">
+        <Griffins />
     </div>
     , document.getElementById('app'));
