@@ -11,10 +11,13 @@ module.exports = {
     , output:{
         path: __dirname + '/dist'
         , filename: 'bundle.js'
-        , publicPath: '/dist'
     }
     , resolve:{
         extensions: ['.js', '.jsx']
+    }
+    ,devServer:{
+        port: 8080
+        , contentBase: './dist'
     }
     , module: {
         rules: [
