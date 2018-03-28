@@ -3,14 +3,18 @@
 $main-bkg-color: rgb(91, 56, 156);
 $main-txt-color: white;
 
-body {
-
-    background-color: $main-bkg-color;
+%main-font-config {
+    
     color: $main-txt-color;
     font-family:'Open Sans' ,Arial, Helvetica, sans-serif;
+}
 
+body.body-content {
+
+    background-color: $main-bkg-color;
+    
     div#app{
-
+        @extend %main-font-config;
         font-weight: bold;
 
     }
