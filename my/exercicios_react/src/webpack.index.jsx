@@ -11,10 +11,10 @@ ReactDom.render(
     <div className="container">
         <Family lastName="Griffin">
             <Member name="Peter"/>
-            {/* <Member name="Lois"/>
+            <Member name="Lois"/>
             <Member name="Stewie"/>
             <Member name="Brian"/>
-            <Member name="Meg"/> */}
+            <Member name="Meg"/>
         </Family>
     </div>
     , document.getElementById('app'));
