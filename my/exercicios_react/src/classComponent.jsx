@@ -17,9 +17,9 @@ export default class ClassComponent extends React.Component {
             <div>
                 <h1>{this.props.label}</h1>
                 <h2>{this.state.value}</h2>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onClick={() => this.sum(-1)}>Dec</button>
-                    <button class="btn btn-primary" onClick={() => this.sum(1)}>Inc</button>
+                <div className="btn-group">
+                    <button className="btn btn-primary" onClick={() => this.sum(-1)}>Dec</button>
+                    <button className="btn btn-primary" onClick={() => this.sum(1)}>Inc</button>
                 </div>
             </div>
         );

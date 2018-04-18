@@ -3,10 +3,10 @@ import './css/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
 import ClassComponent from './classComponent';
-
+import Field from './field';
 
 ReactDom.render(
     <div className="container">
-        <ClassComponent label='Contator' initialValue={10} />
+        <Field label='Contator' initialValue={10} />
     </div>
     , document.getElementById('app'));
