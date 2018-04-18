@@ -7,6 +7,6 @@ import ClassComponent from './classComponent';
 
 ReactDom.render(
     <div className="container">
-        <ClassComponent value="Say hello to my little friend!!!"/>
+        <ClassComponent label='Contator' initialValue={10} />
     </div>
     , document.getElementById('app'));
