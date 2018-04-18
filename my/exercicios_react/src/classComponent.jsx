@@ -9,7 +9,7 @@ export default class ClassComponent extends React.Component {
     }
 
     sum(delta){
-        this.setState({ value: this.state.value + delta });
+        this.setState({ ...this.state, value: this.state.value + delta });
     }
 
     render() {
@@ -17,8 +17,10 @@ export default class ClassComponent extends React.Component {
             <div>
                 <h1>{this.props.label}</h1>
                 <h2>{this.state.value}</h2>
-                <button onClick={() => this.sum(-1)}>Dec</button>
-                <button onClick={() => this.sum(1)}>Inc</button>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onClick={() => this.sum(-1)}>Dec</button>
+                    <button class="btn btn-primary" onClick={() => this.sum(1)}>Inc</button>
+                </div>
             </div>
         );
     }
