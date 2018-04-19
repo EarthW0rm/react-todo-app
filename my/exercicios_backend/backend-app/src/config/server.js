@@ -1,3 +1,4 @@
+//Para rodar na 80 usar SUDO
 const port = 80;
 
 const bodyParser = require('body-parser');
@@ -11,3 +12,5 @@ server.use(bodyParser.json());
 server.listen(port, function(){
     console.log(`BACKEND Runnig in ${port}`);
 });
+
+module.exports = server;
