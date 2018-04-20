@@ -8,8 +8,8 @@ RUN mongod --bind_ip 0.0.0.0 & \
 	sleep 10 \
 	&& mongo --eval "load('/data/mongo_initial_script.js');" \
 	&& mongod --shutdown
+
 EXPOSE 27017
-# CMD ["mongod", "--auth", "--bind_ip_all"]
 CMD ["mongod", "--auth", "--bind_ip", "0.0.0.0"]
 
 # FROM debian:jessie-slim

@@ -1,0 +1,34 @@
+version: '3'
+services:
+  todos.repository.mongodb:
+    image: todos.repository.mongodb
+    build:
+      context: ./mongo/
+      dockerfile: Dockerfile
+    expose:
+      - "27017"
+    networks:
+      db-network:
+        aliases:
+        - todos_repository_mongodb
+
+
+  todos.nodeapi:
+    image: todos.nodeapi
+    build:
+      context: ./backend-app/
+      dockerfile: Dockerfile
+    expose:
+      - "3003"
+    ports:
+      - "8080:3003"
+    depends_on:
+      - todos.repository.mongodb
+    networks:
+      - db-network
+    environment:
+      - API_PORT=3003
+      - CONNECTIONSTRING=mongodb://reactBack:senha123@todos_repository_mongodb:27017
+networks:
+  db-network:
+    driver: bridge

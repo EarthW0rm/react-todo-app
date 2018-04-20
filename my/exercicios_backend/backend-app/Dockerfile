@@ -1,18 +1,14 @@
 FROM alpine:3.7
-
 RUN apk update \
-	&& apk add --update nodejs nodejs-npm \
-	&& apk update --purge
+	&& apk add --update nodejs nodejs-npm
 
-COPY './backend-app/package.json' '/app/package.json'
-COPY './backend-app/src/' '/app/src/'
+COPY './package.json' '/app/package.json'
+COPY './src/' '/app/src/'
 
 WORKDIR /app
 RUN npm i && npm install pm2 -g
 
-EXPOSE 80
 CMD ["pm2-docker", "src/loader.js"]
-
 
 # FROM debian:jessie-slim
 # RUN apt-get update \
@@ -26,8 +22,10 @@ CMD ["pm2-docker", "src/loader.js"]
 # 	&& sudo apt-get clean \
 # 	&& sudo apt-get autoremove
 
-# COPY './backend-app/package.json' '/app/package.json'
-# COPY './backend-app/src/' '/app/src/'
+# COPY './package.json' '/app/package.json'
+# COPY './src/' '/app/src/'
+
+# ENV MYV 'Say Hello'
 
 # WORKDIR /app
 # RUN npm i && npm install pm2 -g

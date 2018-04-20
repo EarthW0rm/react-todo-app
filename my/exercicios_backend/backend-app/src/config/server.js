@@ -1,5 +1,6 @@
 //Para rodar na 80 usar SUDO
-const port = 80;
+const envVars = require('./enviroment');
+const port = envVars.api_port;
 
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -11,6 +12,7 @@ server.use(bodyParser.json());
 
 server.listen(port, function(){
     console.log(`BACKEND Runnig in ${port}`);
+    console.log(envVars.connerctionString);
 });
 
 module.exports = server;
