@@ -1,7 +1,7 @@
 version: '3'
 services:
   todos.repository.mongodb:
-    image: todos.repository.mongodb
+    image: earthw0rm/todos.repository.mongodb:${TAG}
     build:
       context: ./mongo/
       dockerfile: Dockerfile
@@ -14,7 +14,7 @@ services:
 
 
   todos.nodeapi:
-    image: todos.nodeapi
+    image: earthw0rm/todos.nodeapi:${TAG}
     build:
       context: ./backend-app/
       dockerfile: Dockerfile

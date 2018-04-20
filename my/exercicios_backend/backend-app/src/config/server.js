@@ -7,6 +7,11 @@ const express = require('express');
 
 const server = express();
 
+server.use(function (req, res, next) {
+    console.log(`Verbo ${req.method}! Chama q e nois........`);
+    next();
+});
+
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 
