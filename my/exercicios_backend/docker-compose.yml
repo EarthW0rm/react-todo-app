@@ -19,15 +19,15 @@ services:
       context: ./backend-app/
       dockerfile: Dockerfile
     expose:
-      - "3003"
+      - "${BACKEND_API_PORT}"
     ports:
-      - "8080:3003"
+      - "${EXPOSE_API_PORT}:${BACKEND_API_PORT}"
     depends_on:
       - todos.repository.mongodb
     networks:
       - db-network
     environment:
-      - API_PORT=3003
+      - API_PORT=${BACKEND_API_PORT}
       - CONNECTIONSTRING=mongodb://reactBack:senha123@todos_repository_mongodb:27017
 networks:
   db-network:
