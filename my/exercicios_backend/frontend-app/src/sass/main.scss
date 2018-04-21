@@ -49,5 +49,17 @@ body {
             }
         }
 
+        .about {
+
+            & .thumbnail{
+
+                img {
+                    width: 100%;
+                }
+
+            }
+
+        }
+
     }
 }
