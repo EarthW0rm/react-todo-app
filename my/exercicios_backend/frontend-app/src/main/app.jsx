@@ -11,6 +11,8 @@ import Menu from '../template/menu'
 export default props => (
     <div className='container'>
         <Menu />
-        <Routes/>
+        <div className="container">
+            <Routes/>
+        </div>
     </div>
 )
