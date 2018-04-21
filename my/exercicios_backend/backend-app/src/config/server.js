@@ -4,8 +4,8 @@ const port = envVars.api_port;
 
 const bodyParser = require('body-parser');
 const express = require('express');
-
 const server = express();
+const allowCors = require('./cors');
 
 server.use(function (req, res, next) {
     console.log(`Verbo ${req.method}! Chama q e nois........`);
@@ -14,6 +14,7 @@ server.use(function (req, res, next) {
 
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
+server.use(allowCors);
 
 server.listen(port, function(){
     console.log(`BACKEND Runnig in ${port}`);

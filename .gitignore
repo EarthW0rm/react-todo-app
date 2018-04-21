@@ -23,6 +23,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+.vscode
+package-lock.json
 
 # Visual Studio 2015 cache/options directory
 .vs/
