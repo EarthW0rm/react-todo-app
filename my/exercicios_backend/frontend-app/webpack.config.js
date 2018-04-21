@@ -9,7 +9,7 @@ module.exports = {
         , filename: './app.js'
     }
     ,devServer:{
-        port: 81
+        port: 82
         , contentBase: './dist'
     }
     , resolve:{

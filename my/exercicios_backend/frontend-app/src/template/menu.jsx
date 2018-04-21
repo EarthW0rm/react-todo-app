@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default props => (
     <nav className="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-light">
@@ -11,8 +12,8 @@ export default props => (
           </div>
           <div id="navbar" className="navbar-collapse collapsed">
             <ul className="nav navbar-nav">
-              <li><a href="#/todos">Tarefas</a></li>
-              <li><a href="#/about">Sobre</a></li>
+              <li><Link to="/todos">Tarefas</Link></li>
+              <li><Link to="/about">Sobre</Link></li>
             </ul>
           </div>
         </div>
