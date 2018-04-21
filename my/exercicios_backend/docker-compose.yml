@@ -1,34 +1,45 @@
 version: '3'
 services:
-  todos.repository.mongodb:
-    image: earthw0rm/todos.repository.mongodb:${TAG}
+  todos_repository_mongodb:
+    image: earthw0rm/todos_mongodb:dev
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1GB
+      restart_policy:
+        condition: on-failure
     build:
       context: ./mongo/
       dockerfile: Dockerfile
     expose:
       - "27017"
     networks:
-      db-network:
+      webnet:
         aliases:
         - todos_repository_mongodb
 
-
-  todos.nodeapi:
-    image: earthw0rm/todos.nodeapi:${TAG}
+  todos_nodeapi:
+    image: earthw0rm/todos_nodeapi:dev
     build:
       context: ./backend-app/
       dockerfile: Dockerfile
     expose:
-      - "${BACKEND_API_PORT}"
+      - "3003"
     ports:
-      - "${EXPOSE_API_PORT}:${BACKEND_API_PORT}"
+      - "8080:3003"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512MB
+      restart_policy:
+        condition: on-failure      
     depends_on:
-      - todos.repository.mongodb
+      - todos_repository_mongodb
     networks:
-      - db-network
-    environment:
-      - API_PORT=${BACKEND_API_PORT}
-      - CONNECTIONSTRING=mongodb://reactBack:senha123@todos_repository_mongodb:27017
+      - webnet
 networks:
-  db-network:
-    driver: bridge
+  webnet:
