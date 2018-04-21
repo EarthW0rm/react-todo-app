@@ -4,7 +4,6 @@ $main-bkg-color: rgb(91, 56, 156);
 $main-txt-color: white;
 
 %main-font-config {
-    
     color: $main-txt-color;
     font-family:'Open Sans' ,Arial, Helvetica, sans-serif;
 }
@@ -15,7 +14,40 @@ body {
     
     div#app{
         @extend %main-font-config;
-        font-weight: bold;
+
+        .navbar {
+            font-size: 14px;
+            background-color: lighten($main-bkg-color, 10%);
+
+            .navbar-header {
+
+                & .navbar-brand {
+                    @extend %main-font-config;
+                    font-size: 30px;
+                    font-weight: 600;
+                    
+                    & .fa{
+                        margin-right: 15px;
+                    }
+                }
+
+            }
+
+            & ul.nav{
+                padding-left: 50px;
+
+                & > li {                    
+                    margin-right: 10px;
+                    font-size: 20px;
+                    font-weight: bolder;
+    
+                    a {
+                        @extend %main-font-config;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
 
     }
 }
