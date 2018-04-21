@@ -1,16 +1,4 @@
-FROM alpine:3.7
-RUN apk update \
-	&& apk add --update nodejs nodejs-npm
-
-COPY './package.json' '/app/package.json'
-COPY './src/' '/app/src/'
-
-WORKDIR /app
-RUN npm i && npm install pm2 -g
-
-CMD ["pm2-docker", "src/loader.js"]
-
-# FROM debian:jessie-slim
+# FROM debian:jessie-slim AS SystemOS
 # RUN apt-get update \
 # 	&& apt-get install -y curl sudo \
 # 	&& curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
@@ -22,13 +10,15 @@ CMD ["pm2-docker", "src/loader.js"]
 # 	&& sudo apt-get clean \
 # 	&& sudo apt-get autoremove
 
-# COPY './package.json' '/app/package.json'
-# COPY './src/' '/app/src/'
+FROM alpine:3.7 AS SystemOS
+RUN apk update \
+	&& apk add --update nodejs nodejs-npm
+EXPOSE 80
 
-# ENV MYV 'Say Hello'
+FROM SystemOS
+COPY './package.json' '/app/package.json'
+COPY './src/' '/app/src/'
+WORKDIR /app
+RUN npm i && npm install pm2 -g
 
-# WORKDIR /app
-# RUN npm i && npm install pm2 -g
-
-# EXPOSE 80
-# CMD ["pm2-docker", "src/loader.js"]
+CMD ["pm2-docker", "src/loader.js"]
