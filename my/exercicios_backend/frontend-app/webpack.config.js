@@ -13,7 +13,7 @@ module.exports = {
         , contentBase: './dist'
     }
     , resolve:{
-        extensions: ['.js', '.jsx', '.scss', '.css', '.html']
+        extensions: ['.js', '.jsx', '.scss', '.css', '.html', 'jpg']
         , alias: {
             modules: __dirname + '/node_modules'
         }
@@ -64,6 +64,16 @@ module.exports = {
                     options: { minimize: true }
                   }
                 ]
+            }
+            ,{
+                test: /\.(png|jp(e*)g)$/,  
+                use: [{
+                    loader: 'url-loader',
+                    options: { 
+                        limit: 8000, // Convert images < 8kb to base64 strings
+                        name: 'images/[hash]-[name].[ext]'
+                    } 
+                }]
             }
         ]
     }
