@@ -2,14 +2,14 @@ version: '3'
 services:
   todos_repository_mongodb:
     image: earthw0rm/todos_mongodb:1.0
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "1"
-          memory: 1GB
-      restart_policy:
-        condition: on-failure
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     limits:
+    #       cpus: "1"
+    #       memory: 1GB
+    #   restart_policy:
+    #     condition: on-failure
     build:
       context: ./mongo/
       dockerfile: Dockerfile
@@ -28,16 +28,16 @@ services:
     expose:
       - "80"
     ports:
-      - "8080:80"
+      - "8081:80"
     privileged: true
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 512MB
-      restart_policy:
-        condition: on-failure      
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     limits:
+    #       cpus: "0.5"
+    #       memory: 512MB
+    #   restart_policy:
+    #     condition: on-failure      
     depends_on:
       - todos_repository_mongodb
     environment:

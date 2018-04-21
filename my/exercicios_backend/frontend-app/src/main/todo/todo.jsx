@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 import PageHeader from '../../template/page-header'
 import TodoForm from './todo-form'
 import TodoList from './todo-list'
 
 export default class Todo extends Component{
-
+ 
     constructor(props){
         super(props);
         this.handleAdd = this.handleAdd.bind(this);
@@ -13,7 +15,10 @@ export default class Todo extends Component{
     }
 
     handleAdd(evt){
-        console.log('Handle Add');
+        const desc = this.state.description; 
+
+        axios.post(URL, { description: desc })
+            .then(response => console.log(response));
     }
 
     handleChange(evt){
