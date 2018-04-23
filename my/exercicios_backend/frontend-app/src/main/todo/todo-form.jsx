@@ -6,6 +6,17 @@ export default class TodoForm extends Component{
 
     constructor(props){
         super(props);
+
+        this.keyHandler = this.keyHandler.bind(this);
+    }
+
+    keyHandler(e){
+        if(e.key === 'Enter')
+        {
+            e.shiftKey ? this.props.handleSearch() : this.props.handleAdd();
+        } else if (e.key === 'Escape'){
+            this.props.handleClear()
+        }
     }
 
     render(){
@@ -15,6 +26,7 @@ export default class TodoForm extends Component{
                     <input type="text" name="" id="description" className="form-control"
                         placeholder="Adicione uma tarefa" 
                         value={this.props.description}
+                        onKeyUp={this.keyHandler}
                         onChange={this.props.handleChange}/>
                 </Grid>
 
