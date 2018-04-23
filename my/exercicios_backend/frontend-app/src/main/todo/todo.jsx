@@ -12,12 +12,13 @@ export default class Todo extends Component{
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {description: '', list: []};
+        this.serviceUrl = process.env.API_URL + '/todos';
     }
 
     handleAdd(evt){
         const desc = this.state.description; 
 
-        axios.post(URL, { description: desc })
+        axios.post(this.serviceUrl , { description: desc })
             .then(response => console.log(response));
     }
 

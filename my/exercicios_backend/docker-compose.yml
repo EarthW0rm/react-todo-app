@@ -28,7 +28,7 @@ services:
     expose:
       - "80"
     ports:
-      - "8081:80"
+      - "8080:80"
     privileged: true
     # deploy:
     #   replicas: 1
@@ -44,6 +44,30 @@ services:
       - API_PORT=80
       - CONNECTIONSTRING=mongodb://reactBack:senha123@todos_repository_mongodb:27017
     networks:
-      - webnet
+      webnet:
+        aliases:
+        - todos_nodeapi
+
+  todos_web:
+    image: earthw0rm/todos_web:1.0
+    build:
+      context: ./frontend-app/
+      dockerfile: Dockerfile
+      args:
+        - API_URL=http://localhost:8080/api
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    privileged: true
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     limits:
+    #       cpus: "0.5"
+    #       memory: 512MB
+    #   restart_policy:
+    #     condition: on-failure      
+
 networks:
   webnet:
