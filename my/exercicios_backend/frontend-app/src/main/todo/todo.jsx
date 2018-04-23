@@ -13,7 +13,7 @@ export default class Todo extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.state = {description: '', list: []};
         this.serviceUrl = process.env.API_URL + '/todos';
-
+        this.handleRemove = this.handleRemove.bind(this);
         this.refresh();
     }
 
@@ -33,6 +33,11 @@ export default class Todo extends Component{
         this.setState({...this.state, description: evt.target.value});
     }
 
+    handleRemove(todo){
+        axios.delete(`${this.serviceUrl}/${todo._id}`)
+            .then(response => this.refresh());
+    }
+
     render(){
         return(
             <div className="todo">
@@ -40,7 +45,8 @@ export default class Todo extends Component{
                 <TodoForm description={this.state.description}
                     handleAdd={this.handleAdd}
                     handleChange={this.handleChange}/>
-                <TodoList list={this.state.list} />
+                <TodoList list={this.state.list}
+                    handleRemove={this.handleRemove} />
             </div>
         )
     }
