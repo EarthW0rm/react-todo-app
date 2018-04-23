@@ -35,7 +35,7 @@ export default class TodoList extends Component{
                 <thead>
                     <tr>
                         <th>Lista das tarefas</th>
-                        <th>Ações</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -13,6 +13,7 @@ export default class Todo extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.state = {description: '', list: []};
         this.serviceUrl = process.env.API_URL + '/todos';
+        this.handleClear =  this.handleClear.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
@@ -26,8 +27,14 @@ export default class Todo extends Component{
             .then(response => this.setState({...this.state, description: desc, list: response.data}));
     }
 
-    handleSearch(evt){
+    handleClear(){
+        this.refresh();
+        console.log('handleClear');
+    }
+
+    handleSearch(){
         this.refresh(this.state.description);
+        console.log('handleSearch');
     }
 
     handleAdd(evt){
@@ -35,25 +42,31 @@ export default class Todo extends Component{
 
         axios.post(this.serviceUrl , { description: desc })
             .then(response => this.refresh());
+
+        console.log('handleAdd');
     }
 
     handleChange(evt){
         this.setState({...this.state, description: evt.target.value});
+        console.log('handleChange');
     }
 
     handleRemove(todo){
         axios.delete(`${this.serviceUrl}/${todo._id}`)
             .then(response => this.refresh(this.state.description));
+        console.log('handleRemove');    
     }
 
     handleMarkAsDone(todo){
         axios.put(`${this.serviceUrl}/${todo._id}`, {...todo, done: true})
             .then(response => this.refresh(this.state.description));
+        console.log('handleMarkAsDone');    
     }
 
     handleMarkAsPending(todo){
         axios.put(`${this.serviceUrl}/${todo._id}`, {...todo, done: false})
-        .then(response => this.refresh(this.state.description));
+            .then(response => this.refresh(this.state.description));
+        console.log('handleMarkAsPending');    
     }
 
     render(){
@@ -63,7 +76,8 @@ export default class Todo extends Component{
                 <TodoForm description={this.state.description}
                     handleAdd={this.handleAdd}
                     handleChange={this.handleChange}
-                    handleSearch={this.handleSearch}/>
+                    handleSearch={this.handleSearch}
+                    handleClear={this.handleClear}/>
                 <TodoList list={this.state.list}
                     handleRemove={this.handleRemove}
                     handleMarkAsDone={this.handleMarkAsDone}
