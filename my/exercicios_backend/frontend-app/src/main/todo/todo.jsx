@@ -13,13 +13,20 @@ export default class Todo extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.state = {description: '', list: []};
         this.serviceUrl = process.env.API_URL + '/todos';
+
+        this.refresh();
+    }
+
+    refresh(){
+        axios.get(`${this.serviceUrl}?=sort=-createdAt`)
+            .then(response => this.setState({...this.state, description:'', list: response.data}));
     }
 
     handleAdd(evt){
         const desc = this.state.description; 
 
         axios.post(this.serviceUrl , { description: desc })
-            .then(response => console.log(response));
+            .then(response => this.refresh());
     }
 
     handleChange(evt){
@@ -28,12 +35,12 @@ export default class Todo extends Component{
 
     render(){
         return(
-            <div>
+            <div className="todo">
                 <PageHeader name="Tarefas" small="Cadastro"/>
                 <TodoForm description={this.state.description}
                     handleAdd={this.handleAdd}
                     handleChange={this.handleChange}/>
-                <TodoList />
+                <TodoList list={this.state.list} />
             </div>
         )
     }
