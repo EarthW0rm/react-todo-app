@@ -2,14 +2,14 @@ version: '3'
 services:
   todos_repository_mongodb:
     image: earthw0rm/todos_mongodb:1.0
-    # deploy:
-    #   replicas: 1
-    #   resources:
-    #     limits:
-    #       cpus: "1"
-    #       memory: 1GB
-    #   restart_policy:
-    #     condition: on-failure
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1GB
+      restart_policy:
+        condition: on-failure
     build:
       context: ./mongo/
       dockerfile: Dockerfile
@@ -26,22 +26,22 @@ services:
       context: ./backend-app/
       dockerfile: Dockerfile
     expose:
-      - "80"
+      - "8080"
     ports:
-      - "8080:80"
+      - "8080:8080"
     privileged: true
-    # deploy:
-    #   replicas: 1
-    #   resources:
-    #     limits:
-    #       cpus: "0.5"
-    #       memory: 512MB
-    #   restart_policy:
-    #     condition: on-failure      
+    deploy:
+      replicas: 4
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512MB
+      restart_policy:
+        condition: on-failure      
     depends_on:
       - todos_repository_mongodb
     environment:
-      - API_PORT=80
+      - API_PORT=8080
       - CONNECTIONSTRING=mongodb://reactBack:senha123@todos_repository_mongodb:27017
     networks:
       webnet:
@@ -54,20 +54,20 @@ services:
       context: ./frontend-app/
       dockerfile: Dockerfile
       args:
-        - API_URL=http://localhost:8080/api
+        - API_URL=http://192.168.1.71:8080/api
     expose:
       - "80"
     ports:
       - "80:80"
     privileged: true
-    # deploy:
-    #   replicas: 1
-    #   resources:
-    #     limits:
-    #       cpus: "0.5"
-    #       memory: 512MB
-    #   restart_policy:
-    #     condition: on-failure      
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512MB
+      restart_policy:
+        condition: on-failure      
 
 networks:
   webnet:
