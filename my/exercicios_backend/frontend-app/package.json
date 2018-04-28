@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --env.API_URL=http://192.168.1.71:8080/api --colors --hot --open --mode development",
-    "prod": "webpack --progress -p --env.API_URL=http://192.168.1.71:8080/api"
+    "prod": "webpack --progress -p"
   },
   "devDependencies": {
     "axios": "^0.18.0",
