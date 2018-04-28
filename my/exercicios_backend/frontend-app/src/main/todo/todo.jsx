@@ -5,6 +5,8 @@ import PageHeader from '../../template/page-header'
 import TodoForm from './todo-form'
 import TodoList from './todo-list'
 
+import GlobalConfig from '../../config';
+
 export default class Todo extends Component{
  
     constructor(props){
@@ -12,7 +14,7 @@ export default class Todo extends Component{
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {description: '', list: []};
-        this.serviceUrl = process.env.API_URL + '/todos';
+        this.serviceUrl = GlobalConfig.SERVICE_URL + '/todos';
         this.handleClear =  this.handleClear.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
