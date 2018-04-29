@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import Grid  from '../../template/grid'
 import IconButton from '../../template/icon-button'
 
-export default class TodoForm extends Component{
+import { connect } from 'react-redux'
+
+class TodoForm extends Component{
 
     constructor(props){
         super(props);
@@ -41,3 +43,6 @@ export default class TodoForm extends Component{
         )
     }
 }
+
+const mapStateToPropd = state => ({description: state.todo.description})
+export default connect(mapStateToPropd)(TodoForm)
