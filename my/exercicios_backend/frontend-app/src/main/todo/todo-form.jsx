@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 import Grid  from '../../template/grid'
 import IconButton from '../../template/icon-button'
 import { changeDescription } from './todoActions'
-
-import { connect } from 'react-redux'
-import { bindActionsCreators } from 'redux'
 
 class TodoForm extends Component{
 
@@ -48,6 +48,6 @@ class TodoForm extends Component{
 
 const mapStateToPropd = state => ({description: state.todo.description})
 const mapDispatchToProps = dispatch => 
-    bindActionsCreators({changeDescription}, dispatch)
+    bindActionCreators({changeDescription}, dispatch)
 
 export default connect(mapStateToPropd, mapDispatchToProps)(TodoForm)

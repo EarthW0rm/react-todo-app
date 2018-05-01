@@ -1,4 +1,4 @@
  export const changeDescription = (event) => ({
-     type: 'DESCRIPTTION_CHANGED'
+     type: 'DESCRIPTION_CHANGED'
      , payload: event.target.value
  })
