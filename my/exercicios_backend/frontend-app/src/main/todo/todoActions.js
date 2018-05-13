@@ -16,3 +16,12 @@ export const searchTodos = () => {
         , payload: request
     }
 }
+
+export const addTodo = (description) => {
+    const request = axios.post(serviceUrl , { description })
+
+    return {
+        type: 'TODO_ADDED'
+        , payload: request
+    }
+}

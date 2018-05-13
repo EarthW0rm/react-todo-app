@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import Grid  from '../../template/grid'
 import IconButton from '../../template/icon-button'
-import { changeDescription, searchTodos } from './todoActions'
+import { changeDescription, searchTodos, addTodo } from './todoActions'
 
 class TodoForm extends Component{
 
@@ -19,15 +19,19 @@ class TodoForm extends Component{
     }
     
     keyHandler(e){
+        const { addTodo, searchTodos, description } = this.props
+
         if(e.key === 'Enter')
         {
-            e.shiftKey ? this.props.searchTodos() : this.props.handleAdd();
+            e.shiftKey ? searchTodos() : addTodo(description);
         } else if (e.key === 'Escape'){
             this.props.handleClear()
         }
     }
 
     render(){
+        const { addTodo, searchTodos, description } = this.props
+
         return(
             <div role="form" className="todo__todo-form row">
                 <Grid cols="12 9 10">
@@ -40,8 +44,8 @@ class TodoForm extends Component{
 
                 <Grid  cols="12 3 2">
                     <div className="btn-group">
-                        <IconButton style="primary" icon="plus" onClick={this.props.handleAdd}/>
-                        <IconButton style="info" icon="search" onClick={this.props.searchTodos}/>
+                        <IconButton style="primary" icon="plus" onClick={() => addTodo(description) }/>
+                        <IconButton style="info" icon="search" onClick={() => searchTodos()}/>
                         <IconButton style="default" icon="close" onClick={this.props.handleClear}/>
                     </div>
                 </Grid>
@@ -52,6 +56,6 @@ class TodoForm extends Component{
 
 const mapStateToPropd = state => ({description: state.todo.description})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({changeDescription, searchTodos}, dispatch)
+    bindActionCreators({changeDescription, searchTodos, addTodo}, dispatch)
 
 export default connect(mapStateToPropd, mapDispatchToProps)(TodoForm)
