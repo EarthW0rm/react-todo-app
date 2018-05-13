@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 export default props => (
     <nav className="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-light">
-        <div className="container">
+        <div className="container-fluid">
           <div className="navbar-header">
             <a className="navbar-brand" href="#">
                 <i className="fa fa-calendar-check-o"></i>
-                TODO App
+                Tony Montana - Lista de Tarefas
             </a>
           </div>
           <div id="navbar" className="navbar-collapse collapsed">
