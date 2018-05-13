@@ -43,3 +43,12 @@ export const markAsPending = (todo) => {
             
     }
 }
+
+export const deleteTodo = (todo) => {
+    return dispatch => {
+        axios.delete(`${serviceUrl}/${todo._id}`)
+            //.then(resp => dispatch({type: 'TODO_DELETE', payload: resp.data}))
+            .then(resp => dispatch( searchTodos() ))
+            
+    }
+}
