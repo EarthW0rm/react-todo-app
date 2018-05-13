@@ -14,8 +14,6 @@ COPY './nginx.conf' '/etc/nginx/nginx.conf'
 RUN nginx -t
 EXPOSE 80
 
-
-
 FROM SystemOS as build
 ARG API_URL
 COPY './package.json' '/build/package.json'

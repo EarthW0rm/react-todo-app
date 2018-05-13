@@ -13,9 +13,10 @@
 FROM alpine:3.7 AS SystemOS
 RUN apk update \
 	&& apk add --update nodejs nodejs-npm
-EXPOSE 80
 
 FROM SystemOS
+# ENV API_PORT
+# ENV CONNECTIONSTRING
 COPY './package.json' '/app/package.json'
 COPY './src/' '/app/src/'
 WORKDIR /app

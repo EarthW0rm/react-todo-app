@@ -23,7 +23,7 @@ services:
   todos_nodeapi:
     image: earthw0rm/todos_nodeapi:1.0
     build:
-      context: ./backend-app/
+      context: ./backend/
       dockerfile: Dockerfile
     expose:
       - "8080"
@@ -51,10 +51,10 @@ services:
   todos_web:
     image: earthw0rm/todos_web:1.0
     build:
-      context: ./frontend-app/
+      context: ./frontend/
       dockerfile: Dockerfile
       args:
-        - API_URL=http://192.168.1.71:8080/api
+        - API_URL=http://192.168.1.57:8080/api
     expose:
       - "80"
     ports:
