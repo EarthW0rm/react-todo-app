@@ -14,6 +14,9 @@ class TodoForm extends Component{
         this.keyHandler = this.keyHandler.bind(this);
     }
 
+    componentWillMount(){
+        this.props.searchTodos();
+    }
     
     keyHandler(e){
         if(e.key === 'Enter')

@@ -10,9 +10,7 @@ class TodoList extends Component{
         super(props);
     }
 
-    componentWillMount(){
-        this.props.searchTodos();
-    }
+
 
     
     renderRows(){
