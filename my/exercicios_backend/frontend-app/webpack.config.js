@@ -11,7 +11,7 @@ module.exports = function(env) {
             , filename: './app.js'
         }
         ,devServer:{
-            port: 80
+            port: 81
             , contentBase: './dist'
         }
         , resolve:{

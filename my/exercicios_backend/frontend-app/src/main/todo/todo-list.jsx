@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { searchTodos } from './todoActions'
 import IconButton from '../../template/icon-button'
 
 class TodoList extends Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
     }
+
+    componentWillMount(){
+        this.props.searchTodos();
+    }
+
     
     renderRows(){
         const list = this.props.list || [];
@@ -48,4 +55,6 @@ class TodoList extends Component{
 }
 
 const mapStateToProps = state => ( {list: state.todo.list} )
-export default connect(mapStateToProps)(TodoList)
+const mapDispatchToProps = dispatch => 
+    bindActionCreators({searchTodos}, dispatch)
+export default connect(mapStateToProps,  mapDispatchToProps)(TodoList)

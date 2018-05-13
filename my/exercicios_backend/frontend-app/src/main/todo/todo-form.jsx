@@ -14,14 +14,11 @@ class TodoForm extends Component{
         this.keyHandler = this.keyHandler.bind(this);
     }
 
-    componentWillMount(){
-        this.props.searchTodos();
-    }
-
+    
     keyHandler(e){
         if(e.key === 'Enter')
         {
-            e.shiftKey ? this.props.handleSearch() : this.props.handleAdd();
+            e.shiftKey ? this.props.searchTodos() : this.props.handleAdd();
         } else if (e.key === 'Escape'){
             this.props.handleClear()
         }
@@ -41,7 +38,7 @@ class TodoForm extends Component{
                 <Grid  cols="12 3 2">
                     <div className="btn-group">
                         <IconButton style="primary" icon="plus" onClick={this.props.handleAdd}/>
-                        <IconButton style="info" icon="search" onClick={this.props.handleSearch}/>
+                        <IconButton style="info" icon="search" onClick={this.props.searchTodos}/>
                         <IconButton style="default" icon="close" onClick={this.props.handleClear}/>
                     </div>
                 </Grid>
