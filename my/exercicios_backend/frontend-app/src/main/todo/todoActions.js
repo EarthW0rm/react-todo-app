@@ -25,3 +25,21 @@ export const addTodo = (description) => {
             
     }
 }
+
+export const markAsDone = (todo) => {
+    return dispatch => {
+        axios.put(`${serviceUrl}/${todo._id}` , { ...todo, done: true })
+            //.then(resp => dispatch({type: 'TODO_MARKED_AS_DONE', payload: resp.data}))
+            .then(resp => dispatch( searchTodos() ))
+            
+    }
+}
+
+export const markAsPending = (todo) => {
+    return dispatch => {
+        axios.put(`${serviceUrl}/${todo._id}` , { ...todo, done: false })
+            //.then(resp => dispatch({type: 'TODO_MARKED_AS_PENDING', payload: resp.data}))
+            .then(resp => dispatch( searchTodos() ))
+            
+    }
+}
