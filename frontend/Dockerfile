@@ -12,7 +12,7 @@ RUN apk add openrc nginx --no-cache \
     && mkdir -p /run/nginx
 COPY './nginx.conf' '/etc/nginx/nginx.conf'
 RUN nginx -t
-EXPOSE 80
+EXPOSE 8080
 
 FROM SystemOS as build
 ARG API_URL
@@ -22,7 +22,6 @@ COPY './src/' '/build/src/'
 WORKDIR /build
 ENV API_URL=https://earthw0rm-todoapp-api.appspot.com/api
 RUN npm i && npm run prod -- --env.API_URL=https://earthw0rm-todoapp-api.appspot.com/api
-
 FROM NgInx
 COPY --from=build './build/dist' /www
 CMD ["nginx", "-g", "daemon off;"]
