@@ -20,8 +20,8 @@ COPY './package.json' '/build/package.json'
 COPY './webpack.config.js' '/build/webpack.config.js'
 COPY './src/' '/build/src/'
 WORKDIR /build
-ENV API_URL=$API_URL
-RUN npm i && npm run prod -- --env.API_URL=$API_URL
+ENV API_URL=https://earthw0rm-todoapp-api.appspot.com/api
+RUN npm i && npm run prod -- --env.API_URL=https://earthw0rm-todoapp-api.appspot.com/api
 
 FROM NgInx
 COPY --from=build './build/dist' /www
