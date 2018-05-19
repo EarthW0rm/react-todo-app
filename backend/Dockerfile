@@ -21,4 +21,4 @@ RUN mongod --bind_ip 0.0.0.0 & \
 	&& npm install pm2 -g
 WORKDIR /app
 
-CMD pm2-docker src/loader.js & mongod --auth --bind_ip 0.0.0.0
+CMD mongod --auth --bind_ip 0.0.0.0 & sleep 10 && pm2-docker src/loader.js
